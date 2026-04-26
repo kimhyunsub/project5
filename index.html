@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biz Home | 회사 가입</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <section class="hero-card">
+        <p class="eyebrow">Attendance Platform</p>
+        <h1>소규모 사업장의 직원과 알바 출퇴근을 더 간단하게 관리하세요.</h1>
+        <p class="hero-copy">
+          저희 서비스는 매장, 사무실, 학원, 카페처럼 인원이 많지 않은 사업장에서 직원과 알바생의 출근,
+          퇴근, 위치 기반 근태를 쉽게 관리할 수 있도록 돕습니다. 복잡한 설치 없이 회사만 등록하면 바로
+          시작할 수 있어요.
+        </p>
+
+        <div class="hero-highlight">
+          <strong>이런 사장님께 잘 맞아요</strong>
+          <p>
+            직원 출퇴근 시간을 수기로 정리하고 있거나, 알바생 근무 기록을 더 정확하게 남기고 싶은
+            소규모 사업장 운영자
+          </p>
+        </div>
+
+        <div class="hero-points">
+          <article>
+            <strong>위치 기반 출퇴근 체크</strong>
+            <span>회사 기준 위치를 등록해 두면 직원이 앱에서 더 정확하게 출퇴근을 기록할 수 있습니다.</span>
+          </article>
+          <article>
+            <strong>직원과 알바생 한 번에 관리</strong>
+            <span>정직원과 아르바이트생을 함께 등록하고, 초대 링크로 빠르게 계정을 열 수 있습니다.</span>
+          </article>
+          <article>
+            <strong>사장님용 관리자 흐름 제공</strong>
+            <span>회사 가입 후 관리자 계정으로 로그인해 직원 추가, 단말 관리, 설정 변경을 이어갈 수 있습니다.</span>
+          </article>
+        </div>
+
+        <div class="hero-flow">
+          <div>
+            <strong>1. 회사 등록</strong>
+            <span>회사명, 관리자 계정, 기본 위치를 등록합니다.</span>
+          </div>
+          <div>
+            <strong>2. 관리자 로그인</strong>
+            <span>가입 즉시 관리자 계정으로 서비스를 사용할 수 있습니다.</span>
+          </div>
+          <div>
+            <strong>3. 직원 초대</strong>
+            <span>직원과 알바생을 초대해 같은 회사 소속으로 안전하게 로그인시킵니다.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-card">
+        <div class="form-heading">
+          <p class="eyebrow">Company Signup</p>
+          <h2>회사 가입 신청</h2>
+          <p>지금 회사 정보를 등록하고, 직원과 알바 출퇴근 관리를 바로 시작해 보세요.</p>
+        </div>
+
+        <form id="signup-form" class="signup-form">
+          <label>
+            <span>회사명</span>
+            <input name="companyName" type="text" maxlength="100" placeholder="예: 한빛 F&B" required />
+          </label>
+
+          <label>
+            <span>관리자 이름</span>
+            <input name="adminName" type="text" maxlength="100" placeholder="예: 김대표" required />
+          </label>
+
+          <label>
+            <span>관리자 로그인 아이디</span>
+            <input
+              name="adminEmployeeCode"
+              type="text"
+              maxlength="50"
+              placeholder="예: HANBIT_ADMIN"
+              required
+            />
+          </label>
+
+          <label>
+            <span>관리자 비밀번호</span>
+            <input
+              name="adminPassword"
+              type="password"
+              minlength="8"
+              maxlength="100"
+              placeholder="8자 이상 입력해 주세요"
+              required
+            />
+          </label>
+
+          <div class="location-picker">
+            <div class="location-picker__header">
+              <span>회사 기준 위치</span>
+              <button id="use-current-location" class="secondary-action" type="button">현재 위치 사용</button>
+            </div>
+            <p class="location-picker__copy">
+              지도를 클릭해 회사 기본 위치를 선택해 주세요. 선택한 위치가 출퇴근 기준 좌표로 저장됩니다.
+            </p>
+            <div id="location-map" class="location-map" aria-label="회사 위치 선택 지도"></div>
+            <p id="location-summary" class="location-summary">
+              기본 위치는 서울 시청으로 설정되어 있습니다. 원하는 위치를 지도에서 다시 선택할 수 있어요.
+            </p>
+          </div>
+
+          <div class="field-grid">
+            <label>
+              <span>회사 기준 위도</span>
+              <input
+                name="latitude"
+                type="number"
+                step="0.000001"
+                min="-90"
+                max="90"
+                placeholder="37.566500"
+                readonly
+                required
+              />
+            </label>
+
+            <label>
+              <span>회사 기준 경도</span>
+              <input
+                name="longitude"
+                type="number"
+                step="0.000001"
+                min="-180"
+                max="180"
+                placeholder="126.978000"
+                readonly
+                required
+              />
+            </label>
+          </div>
+
+          <label>
+            <span>기본 출퇴근 반경(미터)</span>
+            <input
+              name="allowedRadiusMeters"
+              type="number"
+              min="10"
+              max="5000"
+              value="100"
+              required
+            />
+          </label>
+
+          <button id="submit-button" type="submit">회사 가입하기</button>
+        </form>
+
+        <p id="form-status" class="form-status" aria-live="polite"></p>
+
+        <div id="success-panel" class="success-panel" hidden>
+          <h3>가입이 완료되었습니다.</h3>
+          <p id="success-message"></p>
+          <dl>
+            <div>
+              <dt>회사명</dt>
+              <dd id="result-company-name"></dd>
+            </div>
+            <div>
+              <dt>관리자 이름</dt>
+              <dd id="result-admin-name"></dd>
+            </div>
+            <div>
+              <dt>관리자 아이디</dt>
+              <dd id="result-admin-code"></dd>
+            </div>
+          </dl>
+          <p id="next-step-message" class="next-step"></p>
+        </div>
+      </section>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

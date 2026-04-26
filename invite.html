@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biz Home | 직원 초대 활성화</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell invite-page-shell">
+      <section class="form-card invite-card">
+        <div class="form-heading">
+          <p class="eyebrow">Employee Invite</p>
+          <h1>직원 등록을 시작하세요.</h1>
+          <p>
+            사장님이 보낸 초대 링크입니다. 이 페이지에서 바로 등록해도 되고, 앱이 설치되어 있으면 앱에서
+            이어서 진행해도 됩니다.
+          </p>
+        </div>
+
+        <div class="invite-inline-guide">
+          <div>
+            <strong>모바일 웹에서 바로 가능</strong>
+            <span>브라우저에서 비밀번호 설정과 등록을 바로 진행할 수 있습니다.</span>
+          </div>
+          <div>
+            <strong>앱으로 이어서 가능</strong>
+            <span>앱이 설치되어 있다면 아래 버튼으로 열어서 같은 초대 정보를 이어서 사용할 수 있습니다.</span>
+          </div>
+        </div>
+
+        <div class="invite-entry-actions">
+          <a id="open-app-button" class="primary-link-button" href="#">앱에서 열기</a>
+          <p class="next-step">앱을 열지 않아도 이 페이지에서 바로 등록할 수 있습니다.</p>
+        </div>
+
+        <div id="invite-summary" class="success-panel" hidden>
+          <h3>초대 정보</h3>
+          <dl class="invite-summary-grid">
+            <div>
+              <dt>회사명</dt>
+              <dd id="invite-company-name"></dd>
+            </div>
+            <div>
+              <dt>직원명</dt>
+              <dd id="invite-employee-name"></dd>
+            </div>
+            <div>
+              <dt>직원 아이디</dt>
+              <dd id="invite-employee-code"></dd>
+            </div>
+            <div>
+              <dt>역할</dt>
+              <dd id="invite-role"></dd>
+            </div>
+            <div>
+              <dt>사업장</dt>
+              <dd id="invite-workplace-name"></dd>
+            </div>
+          </dl>
+        </div>
+
+        <form id="invite-form" class="signup-form" hidden>
+          <label>
+            <span>새 비밀번호</span>
+            <input
+              name="newPassword"
+              type="password"
+              minlength="8"
+              maxlength="100"
+              placeholder="8자 이상 입력해 주세요"
+              required
+            />
+          </label>
+
+          <button id="activate-button" type="submit">모바일 웹에서 등록 완료</button>
+        </form>
+
+        <p id="invite-status" class="form-status" aria-live="polite"></p>
+
+        <div id="invite-result" class="success-panel" hidden>
+          <h3>활성화 완료</h3>
+          <p id="invite-result-message"></p>
+          <dl class="invite-summary-grid">
+            <div>
+              <dt>회사명</dt>
+              <dd id="result-company-name"></dd>
+            </div>
+            <div>
+              <dt>직원 아이디</dt>
+              <dd id="result-employee-code"></dd>
+            </div>
+            <div>
+              <dt>토큰 만료 시각</dt>
+              <dd id="result-token-expiry"></dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </div>
+
+    <script src="./invite.js" defer></script>
+  </body>
+</html>
