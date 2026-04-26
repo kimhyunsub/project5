@@ -98,15 +98,38 @@ C:\attendance-app\biz-home\scripts
   - `git checkout main`
   - `git pull origin main`
   - 필수 정적 파일 확인
+  - `npx serve -s . -l 4174` 백그라운드 재시작
   - `nginx.exe -s reload`
 
 - `restart-prod`
-  - 현재 파일 기준으로 `nginx.exe -s reload`만 실행
+  - 현재 파일 기준으로 `npx serve -s . -l 4174` 백그라운드 재시작
+  - `nginx.exe -s reload`
 
 기본 nginx 경로:
 
 ```text
 C:\nginx
+```
+
+Windows nginx 예시 설정 파일:
+
+- [biz-home.windows.conf.example](/Users/hyeonseobkim/workspace/attendance-app/biz-home/infra/nginx/biz-home.windows.conf.example)
+
+권장 적용:
+
+1. `C:\nginx\conf\nginx.conf`를 백업
+2. 위 예시 내용을 `C:\nginx\conf\nginx.conf`에 반영
+3. 문법 확인
+4. nginx reload
+
+예시:
+
+```powershell
+copy C:\nginx\conf\nginx.conf C:\nginx\conf\nginx.conf.bak
+notepad C:\nginx\conf\nginx.conf
+cd C:\nginx
+.\nginx.exe -t
+.\nginx.exe -s reload
 ```
 
 다른 경로면 인자로 넘기면 됩니다.
@@ -128,6 +151,21 @@ powershell -ExecutionPolicy Bypass -File .\scripts\deploy-prod.ps1 -Branch main 
 ```bat
 deploy-prod.bat -ForceSync -NginxRoot C:\nginx
 restart-prod.bat -NginxRoot C:\nginx
+```
+
+실행 후 생성 로그:
+
+- `biz-home.out.log`
+- `biz-home.err.log`
+- `biz-home.deploy.log`
+- `biz-home.restart.log`
+
+처음 nginx 설정을 바꾼 뒤에는 그냥 reload만 하지 말고 문법 확인을 먼저 권장합니다.
+
+```powershell
+cd C:\nginx
+.\nginx.exe -t
+.\nginx.exe -s reload
 ```
 
 ## 확인 포인트
