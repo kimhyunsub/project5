@@ -3,6 +3,7 @@
 사업자 가입용 정적 웹 페이지입니다.
 
 현재 로컬 포트와 서버 역할 정리는 [LOCAL_DEV_ENV.md](/Users/hyeonseobkim/workspace/attendance-app/biz-home/LOCAL_DEV_ENV.md)를 참고하세요.
+운영 배포 방법은 [DEPLOY.md](/Users/hyeonseobkim/workspace/attendance-app/biz-home/DEPLOY.md)를 참고하세요.
 
 ## 로컬 확인
 

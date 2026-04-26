@@ -1,0 +1,23 @@
+server {
+    listen 80;
+    server_name biz.hsft.io.kr;
+
+    root /var/www/biz-home;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location = /invite.html {
+        try_files $uri =404;
+    }
+
+    location ~* \.(html)$ {
+        add_header Cache-Control "no-cache";
+    }
+
+    location ~* \.(js|css)$ {
+        add_header Cache-Control "public, max-age=300";
+    }
+}
